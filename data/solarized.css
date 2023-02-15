@@ -1,7 +1,5 @@
 @import "common.css";
 
-.code { font-family: DejaVu sans Mono , monospace; }
-h1#breadcrumb span { display:none }
 hr { margin: 0; border-collapse:collapse; background-color: #e5e5e5; height:1px;border:none;}
 p.warnmsg { color: #D44; padding: 0 1ex; margin: 0.5ex 0; }
 .code th a { color: inherit }

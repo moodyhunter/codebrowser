@@ -1,0 +1,66 @@
+@import "common.css";
+
+hr { margin: 0; border-collapse:collapse; background-color: #e5e5e5; height:1px;border:none;}
+p.warnmsg { color: #D44; padding: 0 1ex; margin: 0.5ex 0; }
+.code th a { color: inherit }
+
+body, table.code, input, select, div#header, div#header + hr { background-color: #23272E; color: #839496;}
+h1, h3, h2 { color: #93a1a1; }
+
+.code th { background-color: #333942; color: #93a1a1; }
+a { color: #93a1a1; }
+#tooltip { background-color: #333942; color: #93a1a1 }
+#tooltip a { color: #6c71c4;}
+hr { border: 1px  solid #333942 }
+input { background-color: #333942 }
+#footer { color: #839496; }
+#header img { display:none }
+
+/* color style */
+/*.comment, */  .code i { color: 	#7F848E; font-style: oblique }
+                .code i.doc { color: #7F848E; font-style: oblique }
+                .code i .command { color: #C678DD; font-weight: bold; font-style: normal; }
+                .code i .arg { color: #0095FF; font-weight: bold; font-style: normal; }
+                .code i .tag { color: #000; font-weight: bold; font-style: normal; }
+                .code i .verb { color: #888; }
+                .code i .command  + .verb, .code i .command  + a .verb { color: #f00; font-style:normal }
+                .code i a { color: #037; }
+/*.keyword, */  .code b { color: #C678DD; font-weight: bold; }
+/*.keytype, */  .code em { color: #C678DD; font-style:normal }
+.code .string,  .code q { color: #98C379; font-style: normal }
+.code q::before , .code q::after { content:none; }
+/*.directive,*/ .code u { color: #C678DD; text-decoration:none; } .code u a { color: #98C379; }
+/*.num,      */ .code var { color: #D19A66; font-style: normal; }
+/*.char,     */ .code kdb, .code kbd { color: #98C379 }
+
+/* code a,  code dfn  */
+.code .fn { color: #61AFEF; font-weight: bold; }
+.code .field { color: #E06868 }
+.code .type , #tooltip .type { color: #E5C07B }
+.code .typedef { color: #E5C07B }
+.code .member { color: #E06C75 }
+.code .call { color: #207 }
+.code .namespace { color: #C29E5C }
+.code .enum { color: #33EB9E }
+/* .code .decl { color: #E06868; font-weight:bold; } */
+.code .macro { color: #D19A66; font-weight:bold; }
+
+.code .col0 {color:#aa7de6}
+.code .col1 {color:#9883e2}
+.code .col2 {color:#d662af}
+.code .col3 {color:#ec6969}
+.code .col4 {color:#d38059}
+.code .col5 {color:#fac261}
+.code .col6 {color:#b4fa5f}
+.code .col7 {color:#5edf6b}
+.code .col8 {color:#61ced8}
+.code .col9 {color:#5484e6}
+
+.code dfn.fn { font-style:normal; }
+.code .virtual { font-style: italic; }
+
+.highlight { background-color: #3d4450 !important; border: 1px solid #808997; }
+th.highlight { font-weight: bold; }
+th.highlight+td { background-color: #f8f7f6; }
+
+.sideBox { border: 1px solid #ddd; background-color: #333942; }
