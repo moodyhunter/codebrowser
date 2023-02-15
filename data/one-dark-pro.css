@@ -18,10 +18,10 @@ input { background-color: #333942 }
 
 /* color style */
 /*.comment, */  .code i { color: 	#7F848E; font-style: oblique }
-                .code i.doc { color: #00f; font-style: oblique }
-                .code i .command { color: #CA60CA; font-weight: bold; font-style: normal;}
-                .code i .arg { color: #0095FF; font-weight: bold; font-style: normal;}
-                .code i .tag { color: #000; font-weight: bold; font-style: normal;}
+                .code i.doc { color: #7F848E; font-style: oblique }
+                .code i .command { color: #C678DD; font-weight: bold; font-style: normal; }
+                .code i .arg { color: #0095FF; font-weight: bold; font-style: normal; }
+                .code i .tag { color: #000; font-weight: bold; font-style: normal; }
                 .code i .verb { color: #888; }
                 .code i .command  + .verb, .code i .command  + a .verb { color: #f00; font-style:normal }
                 .code i a { color: #037; }
@@ -30,8 +30,8 @@ input { background-color: #333942 }
 .code .string,  .code q { color: #98C379; font-style: normal }
 .code q::before , .code q::after { content:none; }
 /*.directive,*/ .code u { color: #C678DD; text-decoration:none; } .code u a { color: #98C379; }
-/*.num,      */ .code var { color: #B08000; font-style: normal; }
-/*.char,     */ .code kdb, .code kbd { color: #FF80E0 }
+/*.num,      */ .code var { color: #D19A66; font-style: normal; }
+/*.char,     */ .code kdb, .code kbd { color: #98C379 }
 
 /* code a,  code dfn  */
 .code .fn { color: #61AFEF; font-weight: bold; }
@@ -42,21 +42,21 @@ input { background-color: #333942 }
 .code .call { color: #207 }
 .code .namespace { color: #C29E5C }
 .code .enum { color: #33EB9E }
-.code .decl { color: #E06868; font-weight:bold; }
+/* .code .decl { color: #E06868; font-weight:bold; } */
 .code .macro { color: #D19A66; font-weight:bold; }
 
-.code .col0 {color:#6c49ad}
-.code .col1 {color:#b062e0}
+.code .col0 {color:#aa7de6}
+.code .col1 {color:#9883e2}
 .code .col2 {color:#d662af}
-.code .col3 {color:#cf6565}
+.code .col3 {color:#ec6969}
 .code .col4 {color:#d38059}
-.code .col5 {color:#dbae5f}
-.code .col6 {color:#a3d664}
-.code .col7 {color:#71c279}
-.code .col8 {color:#5db8c0}
-.code .col9 {color:#698cd1}
+.code .col5 {color:#fac261}
+.code .col6 {color:#b4fa5f}
+.code .col7 {color:#5edf6b}
+.code .col8 {color:#61ced8}
+.code .col9 {color:#5484e6}
 
-.code dfn { font-style:normal }
+.code dfn.fn { font-style:normal; }
 .code .virtual { font-style: italic; }
 
 .highlight { background-color: #3d4450 !important; border: 1px solid #808997; }
