@@ -27,6 +27,7 @@ if (!data_path) {
 //Styles:
 var setStyle = "";
 document.write("<link rel='alternate stylesheet' title='Solarized' href='" + data_path + "/solarized.css' />");
+document.write("<link rel='alternate stylesheet' title='One Dark Pro' href='" + data_path + "/one-dark-pro.css' />");
 function switchStylestyle(styleName) {
     setStyle = styleName;
     $('link[rel*=style][title]').each(function(i) {
