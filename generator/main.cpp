@@ -299,7 +299,7 @@ static bool proceedCommand(std::vector<std::string> command, llvm::StringRef Dir
         previousIsDashI = false;
         if (A.empty())
             continue;
-        if (llvm::StringRef(A).startswith("-I") && A[2] != '/') {
+        if (llvm::StringRef(A).starts_with("-I") && A[2] != '/') {
             A = "-I" % Directory % "/" % llvm::StringRef(A).substr(2);
             continue;
         }
@@ -458,12 +458,12 @@ int main(int argc, const char **argv)
         // A directory was passed, process all the files in that directory
         llvm::SmallString<128> DirName;
         llvm::sys::path::native(Sources.front(), DirName);
-        while (DirName.endswith("/"))
+        while (DirName.ends_with("/"))
             DirName.pop_back();
         std::error_code EC;
         for (llvm::sys::fs::recursive_directory_iterator it(DirName.str(), EC), DirEnd;
              it != DirEnd && !EC; it.increment(EC)) {
-            if (llvm::sys::path::filename(it->path()).startswith(".")) {
+            if (llvm::sys::path::filename(it->path()).starts_with(".")) {
                 it.no_push();
                 continue;
             }
@@ -603,7 +603,7 @@ int main(int argc, const char **argv)
                       << "\n";
             auto command = compileCommandsForFile.front().CommandLine;
             std::replace(command.begin(), command.end(), fileForCommands, it);
-            if (llvm::StringRef(file).endswith(".qdoc")) {
+            if (llvm::StringRef(file).ends_with(".qdoc")) {
                 command.insert(command.begin() + 1, "-xc++");
                 // include the header for this .qdoc file
                 command.push_back("-include");

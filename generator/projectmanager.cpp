@@ -66,7 +66,7 @@ ProjectInfo *ProjectManager::projectForFile(llvm::StringRef filename)
         if (source_path.size() < match_length) {
             continue;
         }
-        if (filename.startswith(source_path)) {
+        if (filename.starts_with(source_path)) {
             result = &it;
             match_length = source_path.size();
         }
@@ -102,7 +102,7 @@ std::string ProjectManager::includeRecovery(llvm::StringRef includeName, llvm::S
             for (llvm::sys::fs::recursive_directory_iterator it(sourcePath, EC), DirEnd;
                  it != DirEnd && !EC; it.increment(EC)) {
                 auto fileName = llvm::sys::path::filename(it->path());
-                if (fileName.startswith(".")) {
+                if (fileName.starts_with(".")) {
                     it.no_push();
                     continue;
                 }

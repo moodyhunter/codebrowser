@@ -179,7 +179,7 @@ void QtSupport::handleSignalOrSlot(clang::Expr *obj, clang::Expr *method)
         llvm::StringRef argument = signature.substr(argPos, searchPos - argPos).trim();
         // Skip the const at the beginning
 
-        if (argument.startswith("const ") && argument.endswith("&"))
+        if (argument.starts_with("const ") && argument.ends_with("&"))
             argument = argument.slice(6, argument.size() - 1).trim();
 
         argPos = searchPos + 1;
@@ -219,10 +219,10 @@ void QtSupport::handleSignalOrSlot(clang::Expr *obj, clang::Expr *method)
                     ++sigIt;
                 } else if (*parIt == ' ') {
                     ++parIt;
-                } else if (*sigIt == 'n' && llvm::StringRef(sigIt, 9).startswith("nsigned ")) {
+                } else if (*sigIt == 'n' && llvm::StringRef(sigIt, 9).starts_with("nsigned ")) {
                     // skip unsigned
                     sigIt += 8;
-                } else if (*parIt == 'n' && llvm::StringRef(parIt, 9).startswith("nsigned ")) {
+                } else if (*parIt == 'n' && llvm::StringRef(parIt, 9).starts_with("nsigned ")) {
                     // skip unsigned
                     parIt += 8;
                 } else {
@@ -343,7 +343,7 @@ void QtSupport::visitCallExpr(clang::CallExpr *e)
 
     auto parentName = methodDecl->getParent()->getName();
 
-    if (!parentName.startswith("Q"))
+    if (!parentName.starts_with("Q"))
         return; // only Qt classes
 
     if (parentName == "QObject"
@@ -427,7 +427,7 @@ void QtSupport::visitCXXConstructExpr(clang::CXXConstructExpr *e)
         return;
 
     auto parent = methodDecl->getParent();
-    if (!parent->getName().startswith("Q"))
+    if (!parent->getName().starts_with("Q"))
         return; // only Qt classes
 
     if (parent->getName() == "QShortcut") {

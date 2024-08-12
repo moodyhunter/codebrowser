@@ -345,7 +345,7 @@ static void handleUrlsInComment(Generator &generator, llvm::StringRef rawString,
         }
         if (pos < rawString.size() && rawString[pos] == 's')
             pos++;
-        if (!rawString.substr(pos).startswith("://"))
+        if (!rawString.substr(pos).starts_with("://"))
             continue;
         pos += 3;
         // We have an URL
@@ -390,9 +390,9 @@ void CommentHandler::handleComment(Annotator &A, Generator &generator, clang::Se
 
     std::string attributes;
 
-    if ((rawString.ltrim().startswith("/**") && !rawString.ltrim().startswith("/***"))
-        || rawString.ltrim().startswith("/*!") || rawString.ltrim().startswith("//!")
-        || (rawString.ltrim().startswith("///") && !rawString.ltrim().startswith("////")))
+    if ((rawString.ltrim().starts_with("/**") && !rawString.ltrim().starts_with("/***"))
+        || rawString.ltrim().starts_with("/*!") || rawString.ltrim().starts_with("//!")
+        || (rawString.ltrim().starts_with("///") && !rawString.ltrim().starts_with("////")))
 #if CLANG_VERSION_MAJOR == 3 && CLANG_VERSION_MINOR <= 4
         if (rawString.find("deprecated")
             == rawString.npos) // workaround crash in comments::Sema::checkDeprecatedCommand

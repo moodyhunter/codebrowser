@@ -31,6 +31,7 @@
 #include <clang/AST/PrettyPrinter.h>
 #include <clang/AST/RecordLayout.h>
 #include <clang/Basic/FileManager.h>
+#include <clang/Basic/Linkage.h>
 #include <clang/Basic/SourceManager.h>
 #include <clang/Basic/Version.h>
 #include <clang/Lex/Lexer.h>
@@ -151,9 +152,9 @@ Annotator::Visibility Annotator::getVisibility(const clang::NamedDecl *decl)
 
     switch (decl->getLinkageInternal()) {
     default:
-    case clang::NoLinkage:
+    case clang::Linkage::None:
         return Visibility::Local;
-    case clang::ExternalLinkage:
+    case clang::Linkage::External:
         if (decl->getDeclContext()->isRecord()
             && mainFID
                 == sm.getFileID(
@@ -172,11 +173,11 @@ Annotator::Visibility Annotator::getVisibility(const clang::NamedDecl *decl)
             return Visibility::Static;
         }
         return Visibility::Global;
-    case clang::InternalLinkage:
+    case clang::Linkage::Internal:
         if (mainFID != sm.getFileID(sm.getSpellingLoc(decl->getSourceRange().getBegin())))
             return Visibility::Global;
         return Visibility::Static;
-    case clang::UniqueExternalLinkage:
+    case clang::Linkage::UniqueExternal:
         return Visibility::Static;
     }
 }
@@ -276,7 +277,7 @@ bool Annotator::generate(clang::Sema &Sema, bool WasInDatabase)
 
         auto project_it = std::find_if(
             projectManager.projects.cbegin(), projectManager.projects.cend(),
-            [&fn](const ProjectInfo &it) { return llvm::StringRef(fn).startswith(it.name); });
+            [&fn](const ProjectInfo &it) { return llvm::StringRef(fn).starts_with(it.name); });
         if (project_it == projectManager.projects.cend()) {
             std::cerr << "GENERATION ERROR: " << fn << " not in a project" << std::endl;
             continue;
@@ -342,7 +343,7 @@ bool Annotator::generate(clang::Sema &Sema, bool WasInDatabase)
 
     create_directories(llvm::Twine(projectManager.outputPrefix, "/refs/_M"));
     for (const auto &it : references) {
-        if (llvm::StringRef(it.first).startswith("__builtin"))
+        if (llvm::StringRef(it.first).starts_with("__builtin"))
             continue;
         if (it.first == "main")
             continue;
@@ -585,7 +586,7 @@ std::string Annotator::pathTo(clang::FileID From, clang::FileID To, std::string 
     return result = naive_uncomplete(llvm::sys::path::parent_path(fromFN), toFN) + ".html";
 }
 
-std::string Annotator::pathTo(clang::FileID From, const clang::FileEntry *To)
+std::string Annotator::pathTo(clang::FileID From, const clang::FileEntryRef *To)
 {
     // this is a bit duplicated with the other pathTo and htmlNameForFile
 
@@ -1058,7 +1059,7 @@ std::pair<std::string, std::string> Annotator::getReferenceAndTitle(clang::Named
 #endif
             && mangle->shouldMangleDeclName(decl)
             // workaround crash in clang while trying to mangle some builtin types
-            && !llvm::StringRef(qualName).startswith("__")) {
+            && !llvm::StringRef(qualName).starts_with("__")) {
             llvm::raw_string_ostream s(cached.first);
             if (llvm::isa<clang::CXXDestructorDecl>(decl)) {
 #if CLANG_VERSION_MAJOR >= 11
