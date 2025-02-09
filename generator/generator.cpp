@@ -25,6 +25,7 @@
 
 #include "../global.h"
 
+#include <deque>
 #include <fstream>
 #include <iostream>
 #include <llvm/Support/raw_ostream.h>

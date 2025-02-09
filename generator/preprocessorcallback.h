@@ -61,7 +61,7 @@ public:
                             llvm::StringRef FileName, bool IsAngled,
                             clang::CharSourceRange FilenameRange, clang::OptionalFileEntryRef File,
                             llvm::StringRef SearchPath, llvm::StringRef RelativePath,
-                            const clang::Module *Imported,
+                            const clang::Module *Imported, bool ModuleImported,
                             clang::SrcMgr::CharacteristicKind) override;
 
     void PragmaDirective(clang::SourceLocation Loc, clang::PragmaIntroducerKind Introducer) override
