@@ -27,6 +27,7 @@
 
 #include <fstream>
 #include <iostream>
+#include <deque>
 #include <llvm/Support/raw_ostream.h>
 #include <llvm/Support/FileSystem.h>
 #include <llvm/ADT/StringExtras.h>
